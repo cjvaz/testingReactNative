@@ -15,11 +15,13 @@ import {
 } from 'react-native';
 
 import Repo from './components/repo';
+import NewRepoModal from './components/newRepoModal';
 
 type Props = {};
 export default class App extends Component<Props> {
 
   state = {
+    modalVisible: false,
     repos: [
       {
         id: 1,
@@ -40,7 +42,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Repositories</Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => this.setState({ modalVisible: true })}>
             <Text style={styles.headerButton}>+</Text>
           </TouchableOpacity>
         </View>
@@ -48,6 +50,10 @@ export default class App extends Component<Props> {
         <ScrollView contentContainerStyle={styles.repoList}>
           { this.state.repos.map(repo => <Repo key={repo.id} data={repo} /> )}
         </ScrollView>
+
+        <NewRepoModal 
+          onCancel={() => this.setState({ modalVisible: false })}
+          visible={this.state.modalVisible} />
       </View>
     );
   }
