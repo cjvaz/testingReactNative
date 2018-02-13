@@ -40,6 +40,9 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Repositories</Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.headerButton}>+</Text>
+          </TouchableOpacity>
         </View>
 
         <ScrollView contentContainerStyle={styles.repoList}>
@@ -60,8 +63,15 @@ const styles = StyleSheet.create({
     height: (Platform.OS === 'ios') ? 70 : 50,
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
     backgroundColor: '#FFF',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 20
+  },
+
+  headerButton: {
+    fontSize: 24,
+    fontWeight: 'bold'
   },
 
   headerText: {
