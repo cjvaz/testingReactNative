@@ -9,7 +9,8 @@ import {
   Text,
   View,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 
@@ -22,8 +23,14 @@ export default class App extends Component<Props> {
           <Text style={styles.headerText}>Repositories</Text>
         </View>
 
-        <ScrollView>
-
+        <ScrollView contentContainerStyle={styles.repoList}>
+          <View style={styles.repo} />
+          <View style={styles.repo} />
+          <View style={styles.repo} />
+          <View style={styles.repo} />
+          <View style={styles.repo} />
+          <View style={styles.repo} />
+          <View style={styles.repo} />
         </ScrollView>
       </View>
     );
@@ -33,14 +40,12 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#333',
   },
 
   header: {
-    height: 50,
-    paddingTop: 20,
+    height: (Platform.OS === 'ios') ? 70 : 50,
+    paddingTop: (Platform.OS === 'ios') ? 20 : 0,
     backgroundColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center'
@@ -49,5 +54,17 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 16,
     fontWeight: 'bold'
+  },
+
+  repoList: {
+    padding: 20
+  },
+
+  repo: {
+    padding: 20,
+    backgroundColor: '#FFF',
+    height: 120,
+    marginBottom: 20,
+    borderRadius: 5
   }
 });
