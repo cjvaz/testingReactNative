@@ -13,9 +13,27 @@ import {
   Platform
 } from 'react-native';
 
+import Repo from './components/repo';
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  state = {
+    repos: [
+      {
+        id: 1,
+        thumbnail: 'https://avatars0.githubusercontent.com/u/28929274?s=200&v=4',
+        title: 'rockerocketseat.com.br',
+        author: 'rocketseat',
+      },
+      {
+        id: 2,
+        thumbnail: 'https://avatars0.githubusercontent.com/u/28929274?s=200&v=4',
+        title: 'rocketnative.com.br',
+        author: 'diego',
+      },
+    ]
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -24,13 +42,7 @@ export default class App extends Component<Props> {
         </View>
 
         <ScrollView contentContainerStyle={styles.repoList}>
-          <View style={styles.repo} />
-          <View style={styles.repo} />
-          <View style={styles.repo} />
-          <View style={styles.repo} />
-          <View style={styles.repo} />
-          <View style={styles.repo} />
-          <View style={styles.repo} />
+          { this.state.repos.map(repo => <Repo key={repo.id} /> )}
         </ScrollView>
       </View>
     );
@@ -59,12 +71,4 @@ const styles = StyleSheet.create({
   repoList: {
     padding: 20
   },
-
-  repo: {
-    padding: 20,
-    backgroundColor: '#FFF',
-    height: 120,
-    marginBottom: 20,
-    borderRadius: 5
-  }
 });
