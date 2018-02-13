@@ -10,7 +10,8 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  Platform
+  Platform,
+  TouchableOpacity
 } from 'react-native';
 
 import Repo from './components/repo';
@@ -42,7 +43,7 @@ export default class App extends Component<Props> {
         </View>
 
         <ScrollView contentContainerStyle={styles.repoList}>
-          { this.state.repos.map(repo => <Repo key={repo.id} /> )}
+          { this.state.repos.map(repo => <Repo key={repo.id} data={repo} /> )}
         </ScrollView>
       </View>
     );

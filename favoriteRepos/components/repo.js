@@ -8,11 +8,11 @@ export default class Repo extends Component {
           <View style={styles.repo}>
             <Image
               style={styles.repoImage}
-              source={{ uri: ''}}
+              source={{ uri: this.props.data.thumbnail}}
             />
             <View style={styles.repoInfo}>
-              <Text style={styles.repoTitle}>rocketseat.com.br</Text>
-              <Text style={styles.repoAuthor}>rocketseat</Text>
+              <Text style={styles.repoTitle}>{this.props.data.title}</Text>
+              <Text style={styles.repoAuthor}>{this.props.data.author}</Text>
             </View>
           </View>
         )
