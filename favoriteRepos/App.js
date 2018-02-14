@@ -11,6 +11,7 @@ import {
   ScrollView,
   StyleSheet,
   Platform,
+  AsyncStorage,
   TouchableOpacity
 } from 'react-native';
 
@@ -24,6 +25,11 @@ export default class App extends Component<Props> {
     modalVisible: false,
     repos: []
   };
+
+  async componentDidMount() {
+    const repos = JSON.parse(await AsyncStorage.getItem('@favoriteRepos:repositories')) || [];
+    this.setState({repos});
+  }
 
   _addRepository = async (newRepoText) => {
     const repoCall = await fetch(`http://api.github.com/repos/${newRepoText}`);
@@ -42,7 +48,10 @@ export default class App extends Component<Props> {
         ...this.state.repos,
         repository
       ]
-    })
+    });
+
+    await AsyncStorage.setItem('@favoriteRepos:repositories', JSON.stringify(this.state.repos));
+
   };
 
   render() {
