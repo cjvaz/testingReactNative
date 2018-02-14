@@ -10,41 +10,48 @@ import {
  } from 'react-native';
 
 export default class NewRepoModal extends Component {
-    render() {
-        return (
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={this.props.visible}>
 
-            <View style={styles.modalContainer}>
-              <View style={styles.boxContainer}>
-                <Text style={styles.boxTitle}>Add repository</Text>
-                <TextInput
-                  autoFocus
-                  autoCapitalize='none'
-                  style={styles.boxInput}
-                  underLineColorAndroid='rgba(0,0,0,0)'
-                  placeholder='organization/repository'
-                />
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={[styles.button, styles.cancelButton]}
-                    onPress={this.props.onCancel}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={[styles.button, styles.submitButton]}
-                    onPress={() => {}}>
-                    <Text style={styles.buttonText}>Add</Text>
-                  </TouchableOpacity>
-                </View>
+  state = {
+    newRepoText: ''
+  }
+
+  render() {
+      return (
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.props.visible}>
+
+          <View style={styles.modalContainer}>
+            <View style={styles.boxContainer}>
+              <Text style={styles.boxTitle}>Add repository</Text>
+              <TextInput
+                autoFocus
+                autoCapitalize='none'
+                style={styles.boxInput}
+                underLineColorAndroid='rgba(0,0,0,0)'
+                placeholder='organization/repository'
+                value={this.state.newRepoText}
+                onChangeText={newRepoText => this.setState({ newRepoText })}
+              />
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                  style={[styles.button, styles.cancelButton]}
+                  onPress={this.props.onCancel}>
+                  <Text style={styles.buttonText}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.button, styles.submitButton]}
+                  onPress={ () => this.props.onAdd(this.state.newRepoText)}>
+                  <Text style={styles.buttonText}>Add</Text>
+                </TouchableOpacity>
               </View>
             </View>
+          </View>
 
-          </Modal>
-        )
-    }
+        </Modal>
+      )
+  }
 }
 
 const styles = StyleSheet.create({
